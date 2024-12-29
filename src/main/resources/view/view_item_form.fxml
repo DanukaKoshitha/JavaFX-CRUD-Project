@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.View_Item_Form_Controller">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3a47" height="62.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label alignment="CENTER" layoutX="168.0" layoutY="5.0" prefHeight="51.0" prefWidth="302.0" text="View Item Form" textFill="#d90c0c">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblView" layoutX="31.0" layoutY="82.0" prefHeight="257.0" prefWidth="536.0" style="-fx-background-color: #40739e;">
+        <columns>
+          <TableColumn fx:id="colCode" prefWidth="110.4000244140625" text="Item Code" />
+          <TableColumn fx:id="colDescription" prefWidth="173.60003662109375" text="Description" />
+            <TableColumn fx:id="colPrice" prefWidth="118.39996337890625" text="Unit Price" />
+            <TableColumn fx:id="colQTY" prefWidth="137.60003662109375" text="QTY" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="271.0" layoutY="353.0" onAction="#btnReloadOnAction" style="-fx-background-color: #e1b12c;" text="Reload" textFill="#dc2121">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

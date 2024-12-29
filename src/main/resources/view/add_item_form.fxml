@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Add_Item_Form_Controller">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3a47" height="62.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label alignment="CENTER" layoutX="166.0" layoutY="5.0" prefHeight="51.0" prefWidth="302.0" text="Add Item Form" textFill="#d90c0c">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="81.0" layoutY="336.0" onAction="#btnAddOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #33d9b2;" text="Add">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="275.0" layoutY="336.0" onAction="#btnSearchOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #ffc048;" text="Search">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="372.0" layoutY="336.0" onAction="#btnUpdateOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #0fbcf9;" text="Update">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="465.0" layoutY="336.0" onAction="#btnDeleteOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #ff3f34;" text="Delete">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <JFXButton layoutX="178.0" layoutY="336.0" onAction="#btnViewOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #c56cf0;" text="View">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtCode" layoutX="217.0" layoutY="98.0" prefHeight="31.0" prefWidth="165.0" promptText="Item Code" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtDescription" layoutX="217.0" layoutY="152.0" prefHeight="31.0" prefWidth="165.0" promptText="Description" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUnitPrice" layoutX="217.0" layoutY="204.0" prefHeight="31.0" prefWidth="165.0" promptText="Unit Price" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtQTY" layoutX="217.0" layoutY="254.0" prefHeight="31.0" prefWidth="165.0" promptText="QTY" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
