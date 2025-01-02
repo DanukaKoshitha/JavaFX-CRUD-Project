@@ -48,33 +48,8 @@ public class View_Item_Form_Controller implements Initializable {
     }
 
     public void loadTabel(){
-        ArrayList<Item> itemArrayList = new ArrayList<>();
-
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement pst = connection.createStatement();
-            ResultSet resultSet = pst.executeQuery("SELECT * FROM item");
-
-            while (resultSet.next()){
-                itemArrayList.add(
-                        new Item(
-                                resultSet.getString(1),
-                                resultSet.getString(2),
-                                resultSet.getDouble(3),
-                                resultSet.getInt(4)
-                        ));
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-        ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
-
-        itemArrayList.forEach(items -> {
-            itemObservableList.add(items);
-        });
-
-        tblView.setItems(itemObservableList);
+        ItemServices services=new ItemController();
+        ObservableList<Item> observableList= (ObservableList<Item>) services.loadTable();
+        tblView.setItems(observableList);
     }
 }

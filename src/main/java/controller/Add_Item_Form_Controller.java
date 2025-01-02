@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Item;
 
 import java.io.IOException;
 import java.sql.*;
@@ -26,80 +27,63 @@ public class Add_Item_Form_Controller {
     @FXML
     private TextField txtUnitPrice;
 
+    ItemServices services = new ItemController();
+
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement("INSERT INTO item VALUES (?,?,?,?)");
-
-            pst.setString(1,txtCode.getText());
-            pst.setString(2,txtDescription.getText());
-            pst.setDouble(3, Double.parseDouble(txtUnitPrice.getText()));
-            pst.setInt(4,Integer.parseInt(txtQTY.getText()));
-
-            if (pst.executeUpdate()>0){
-                new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (
+                services.addItem(
+                        new Item(
+                                txtCode.getText(),
+                                txtDescription.getText(),
+                                Double.parseDouble(txtUnitPrice.getText()),
+                                Integer.parseInt(txtQTY.getText())
+                        )
+                )
+        ){
+            new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Item Not Added!").show();
         }
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement("DELETE FROM item WHERE code=?");
-            pst.setString(1,txtCode.getText());
-
-            if (pst.executeUpdate()>0){
-                new Alert(Alert.AlertType.CONFIRMATION,"Delete Successful!").show();
-            }else {
-                new Alert(Alert.AlertType.ERROR,"Try Again").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (services.deleteItem(txtCode.getText())){
+            new Alert(Alert.AlertType.CONFIRMATION,"Deleted!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Try Again!").show();
         }
     }
 
     @FXML
     void btnSearchOnAction(ActionEvent event) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM item WHERE code=?");
-        pst.setString(1, txtCode.getText());
-        ResultSet resultSet = pst.executeQuery();
-
-       if (resultSet.next()){
-                txtDescription.setText(resultSet.getString("description"));
-                txtUnitPrice.setText(String.valueOf((resultSet.getDouble("unitPrice"))));
-                txtQTY.setText(String.valueOf(resultSet.getInt("qtyOnHand")));
-       }else {
-                new Alert(Alert.AlertType.ERROR,"Item Not Found!").show();
-       }
+        Item item = services.searchItem(txtCode.getText());
+        if (item != null){
+            txtDescription.setText(item.getDescription());
+            txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+            txtQTY.setText(String.valueOf(item.getQty()));
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Item Not Fonund!").show();
+        }
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-        try {
-            String SQL = "UPDATE item SET description=?,unitPrice=?,qtyOnHand=? WHERE code=?";
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement(SQL);
-
-            pst.setString(1,txtDescription.getText());
-            pst.setDouble(2, Double.parseDouble(txtUnitPrice.getText()));
-            pst.setInt(3, Integer.parseInt(txtQTY.getText()));
-            pst.setString(4,txtCode.getText());
-
-            if (pst.executeUpdate()>0){
-                new Alert(Alert.AlertType.CONFIRMATION,"Update Successful!").show();
-            }else {
-                new Alert(Alert.AlertType.ERROR,"Try Again!").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (
+                services.updateItem(
+                new Item(
+                        txtCode.getText(),
+                        txtDescription.getText(),
+                        Double.parseDouble(txtUnitPrice.getText()),
+                        Integer.parseInt(txtQTY.getText())
+                )
+            )
+        ){
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated!").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Try Again!").show();
         }
-
     }
 
     @FXML
