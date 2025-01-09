@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="343.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3a47" height="62.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Label alignment="CENTER" layoutX="147.0" layoutY="6.0" prefHeight="51.0" prefWidth="342.0" text="Thogakade " textFill="#d90c0c">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtName" layoutX="149.0" layoutY="124.0" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtPassword" layoutX="149.0" layoutY="196.0" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #808e9b;">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="23.0" layoutY="126.0" prefHeight="27.0" prefWidth="125.0" text="User Name  :  " textFill="#09d9ec">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="198.0" prefHeight="27.0" prefWidth="125.0" text="Password  :  " textFill="#09d9ec">
+         <font>
+            <Font name="System Bold Italic" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="135.0" layoutY="259.0" onAction="#btnLoginOnAction" prefHeight="31.0" prefWidth="74.0" style="-fx-background-color: #c56cf0;" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </JFXButton>
+      <ImageView fitHeight="246.0" fitWidth="256.0" layoutX="329.0" layoutY="75.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="labal" layoutX="123.0" layoutY="305.0" onDragDetected="#lblRegister" prefHeight="18.0" prefWidth="110.0" text="Create an account" textFill="#05f543">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

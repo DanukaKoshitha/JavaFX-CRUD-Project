@@ -1,6 +1,5 @@
 package controller;
 
-import DB.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

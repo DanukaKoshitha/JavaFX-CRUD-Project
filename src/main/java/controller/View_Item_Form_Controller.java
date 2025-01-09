@@ -1,8 +1,5 @@
 package controller;
 
-import DB.DBConnection;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,8 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Item;
 
 import java.net.URL;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class View_Item_Form_Controller implements Initializable {
