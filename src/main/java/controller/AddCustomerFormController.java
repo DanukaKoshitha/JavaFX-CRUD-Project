@@ -18,47 +18,37 @@ public class AddCustomerFormController {
     public TextField txtAddress;
     public TextField txtSalary;
 
+    CustomerServices services = new CustomerController();
+
     public void btnSearchOnAction(ActionEvent actionEvent) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE id=?");
-        pst.setString(1,txtID.getText());
-        ResultSet resultSet = pst.executeQuery();
-
-        Customer customer = null;
-
-        if (resultSet.next()){
-            customer = new Customer(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getDouble(4)
-            );
-        }
+        Customer customer = services.searchCustomer(txtID.getText());
 
         if (customer!=null){
-            txtID.setText(customer.getId());
-            txtName.setText(customer.getName());
-            txtAddress.setText(customer.getAddress());
-            txtSalary.setText(String.valueOf(customer.getSalary()));
+                txtID.setText(customer.getId());
+                txtName.setText(customer.getName());
+                txtAddress.setText(customer.getAddress());
+                txtSalary.setText(String.valueOf(customer.getSalary()));
         }
-
+        else {
+            new Alert(Alert.AlertType.ERROR,"Customer Not Found!").show();
+        }
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("insert into customer values(?,?,?,?)");
-
-        pst.setString(1,txtID.getText());
-        pst.setString(2,txtName.getText());
-        pst.setString(3,txtAddress.getText());
-        pst.setDouble(4, Double.parseDouble(txtSalary.getText()));
-
-        if (pst.executeUpdate()>0){
+        if (
+                services.addCustomer(
+                        new Customer(
+                            txtID.getText(),
+                            txtName.getText(),
+                            txtAddress.getText(),
+                            Double.parseDouble(txtSalary.getText())
+                        )
+                )
+        ){
             new Alert(Alert.AlertType.CONFIRMATION,"Added!").show();
         }else {
-            new Alert(Alert.AlertType.ERROR,"Not Added!").show();
+            new Alert(Alert.AlertType.ERROR,"NOT Added!").show();
         }
-
     }
 
     public void btnUpdateOnAction(ActionEvent actionEvent) throws SQLException {
