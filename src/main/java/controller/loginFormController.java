@@ -9,11 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.Users;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class loginFormController {
     public TextField txtName;

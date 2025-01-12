@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import model.Item;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.SQLException;
 
 public class Add_Item_Form_Controller {
 
@@ -30,40 +30,56 @@ public class Add_Item_Form_Controller {
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
-        if (
-                services.addItem(
-                        new Item(
-                                txtCode.getText(),
-                                txtDescription.getText(),
-                                Double.parseDouble(txtUnitPrice.getText()),
-                                Integer.parseInt(txtQTY.getText())
-                        )
-                )
-        ){
-            new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"Item Not Added!").show();
+        try {
+            if (
+                    services.addItem(
+                            new Item(
+                                    txtCode.getText(),
+                                    txtDescription.getText(),
+                                    Double.parseDouble(txtUnitPrice.getText()),
+                                    Integer.parseInt(txtQTY.getText())
+                            )
+                    )
+            ){
+                new Alert(Alert.AlertType.CONFIRMATION,"Item Added!").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Item Not Added!").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-        if (services.deleteItem(txtCode.getText())){
-            new Alert(Alert.AlertType.CONFIRMATION,"Deleted!").show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"Try Again!").show();
+        try {
+            if (services.deleteItem(txtCode.getText())){
+                new Alert(Alert.AlertType.CONFIRMATION,"Deleted!").show();
+            }else {
+                new Alert(Alert.AlertType.ERROR,"Try Again!").show();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     @FXML
-    void btnSearchOnAction(ActionEvent event) throws SQLException {
-        Item item = services.searchItem(txtCode.getText());
-        if (item != null){
-            txtDescription.setText(item.getDescription());
-            txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
-            txtQTY.setText(String.valueOf(item.getQty()));
-        }else{
-            new Alert(Alert.AlertType.ERROR,"Item Not Fonund!").show();
+    void btnSearchOnAction(ActionEvent event) {
+
+        try {
+            Item item = services.searchItem(txtCode.getText());
+
+            if (item != null){
+                txtCode.setText(item.getCode());
+                txtDescription.setText(item.getDescription());
+                txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+                txtQTY.setText(String.valueOf(item.getQty()));
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Item Not Found!").show();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

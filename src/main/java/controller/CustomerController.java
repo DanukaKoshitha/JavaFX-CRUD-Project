@@ -1,13 +1,12 @@
 package controller;
 
 import DB.DBConnection;
-import javafx.scene.control.Alert;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerController implements CustomerServices{
@@ -59,16 +58,66 @@ public class CustomerController implements CustomerServices{
 
     @Override
     public boolean updateCustomer(Customer customer) {
-        return false;
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement("UPDATE customer SET name=?,address=?,salary=? where id=?");
+
+            pst.setString(1,customer.getName());
+            pst.setString(2,customer.getAddress());
+            pst.setDouble(3,customer.getSalary());
+            pst.setString(4,customer.getId());
+
+            return pst.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public boolean deleteCustomer(String id) {
-        return false;
+        Connection connection = DBConnection.getInstance().getConnection();
+        PreparedStatement pst = null;
+        try {
+            pst = connection.prepareStatement("DELETE FROM customer where id=?");
+            pst.setString(1,id);
+
+            return pst.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public List<Customer> loadTable() {
-        return List.of();
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet rst = stm.executeQuery("select * from customer");
+
+            List<Customer> customerList = new ArrayList<>();
+
+            while (rst.next()){
+                customerList.add(
+                        new Customer(
+                                rst.getString(1),
+                                rst.getString(2),
+                                rst.getString(3),
+                                rst.getDouble(4)
+                        )
+                );
+            }
+            ObservableList<Customer> observableList = FXCollections.observableArrayList();
+
+            customerList.forEach(customer -> {
+                observableList.add(customer);
+            });
+
+            return observableList;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

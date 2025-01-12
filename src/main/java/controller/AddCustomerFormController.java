@@ -1,14 +1,15 @@
 package controller;
 
-import DB.DBConnection;
+
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import model.Customer;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddCustomerFormController {
@@ -20,7 +21,7 @@ public class AddCustomerFormController {
 
     CustomerServices services = new CustomerController();
 
-    public void btnSearchOnAction(ActionEvent actionEvent) throws SQLException {
+    public void btnSearchOnAction(ActionEvent actionEvent){
         Customer customer = services.searchCustomer(txtID.getText());
 
         if (customer!=null){
@@ -51,34 +52,34 @@ public class AddCustomerFormController {
         }
     }
 
-    public void btnUpdateOnAction(ActionEvent actionEvent) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("UPDATE customer SET name=?,address=?,salary=? where id=?");
+    public void btnUpdateOnAction(ActionEvent actionEvent){
 
-        pst.setString(1,txtName.getText());
-        pst.setString(2,txtAddress.getText());
-        pst.setDouble(3, Double.parseDouble(txtSalary.getText()));
-        pst.setString(4,txtID.getText());
-
-        if (pst.executeUpdate()>0){
+        if (services.updateCustomer(
+                new Customer(
+                        txtID.getText(),
+                        txtName.getText(),
+                        txtAddress.getText(),
+                        Double.parseDouble(txtSalary.getText())
+                )
+        )){
                 new Alert(Alert.AlertType.CONFIRMATION,"Updated!").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"Try Again!").show();
         }
     }
 
-    public void btnDeleteOnAction(ActionEvent actionEvent) throws SQLException {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("DELETE FROM customer where id=?");
-        pst.setString(1,txtID.getText());
+    public void btnDeleteOnAction(ActionEvent actionEvent) {
 
-        if (pst.executeUpdate()>0){
+        if (services.deleteCustomer(txtID.getText())){
             new Alert(Alert.AlertType.CONFIRMATION,"Deleted!").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"Try Again!").show();
         }
     }
 
-    public void btnViewOnAction(ActionEvent actionEvent) {
+    public void btnViewOnAction(ActionEvent actionEvent) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/viewCustomerForm.fxml"))));
+        stage.show();
     }
 }
