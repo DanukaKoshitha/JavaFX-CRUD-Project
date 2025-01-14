@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddCustomerFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3a47" height="62.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label alignment="CENTER" layoutX="153.0" layoutY="5.0" prefHeight="51.0" prefWidth="342.0" text="Add Customer Form" textFill="#d90c0c">
@@ -41,25 +39,31 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtID" layoutX="217.0" layoutY="98.0" prefHeight="31.0" prefWidth="165.0" promptText="Customer ID" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtID" layoutX="217.0" layoutY="123.0" prefHeight="31.0" prefWidth="165.0" promptText="Customer ID" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtName" layoutX="217.0" layoutY="152.0" prefHeight="31.0" prefWidth="165.0" promptText="Name" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtName" layoutX="217.0" layoutY="177.0" prefHeight="31.0" prefWidth="165.0" promptText="Name" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAddress" layoutX="217.0" layoutY="204.0" prefHeight="31.0" prefWidth="165.0" promptText="Address" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtAddress" layoutX="217.0" layoutY="229.0" prefHeight="31.0" prefWidth="165.0" promptText="Address" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtSalary" layoutX="217.0" layoutY="254.0" prefHeight="31.0" prefWidth="165.0" promptText="Salary" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtSalary" layoutX="217.0" layoutY="279.0" prefHeight="31.0" prefWidth="165.0" promptText="Salary" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
+      <TextField fx:id="lblDate" alignment="CENTER" layoutX="29.0" layoutY="77.0">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="lblTime" alignment="CENTER" layoutX="409.0" layoutY="77.0" />
    </children>
 </AnchorPane>
