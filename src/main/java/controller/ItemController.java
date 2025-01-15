@@ -12,6 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemController implements ItemServices{
+
+    //////////////////////////////  Singleton  /////////////////////////////////////
+
+    public static ItemController insance;
+
+    ItemController(){
+
+    }
+
+    public static ItemController getInstance()  {
+        return  insance == null ? insance = new ItemController(): insance;
+
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+
     @Override
     public boolean addItem(Item item) throws SQLException {
        return CrudUtill.execute(
@@ -25,7 +41,7 @@ public class ItemController implements ItemServices{
 
     @Override
     public Item searchItem(String id) throws SQLException {
-        ResultSet rst = CrudUtill.execute("SELECT * FROM item WHERE code=?",id);
+        ResultSet rst = CrudUtill.execute("SELECT * FROM item WHERE code=?", id);
 
         Item item = null;
 
@@ -95,3 +111,4 @@ public class ItemController implements ItemServices{
         return itemObservableList;
     }
 }
+

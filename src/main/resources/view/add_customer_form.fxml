@@ -39,31 +39,25 @@
             <Font name="System Bold Italic" size="15.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtID" layoutX="217.0" layoutY="123.0" prefHeight="31.0" prefWidth="165.0" promptText="Customer ID" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtID" layoutX="217.0" layoutY="97.0" prefHeight="31.0" prefWidth="165.0" promptText="Customer ID" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtName" layoutX="217.0" layoutY="177.0" prefHeight="31.0" prefWidth="165.0" promptText="Name" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtName" layoutX="217.0" layoutY="151.0" prefHeight="31.0" prefWidth="165.0" promptText="Name" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtAddress" layoutX="217.0" layoutY="229.0" prefHeight="31.0" prefWidth="165.0" promptText="Address" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtAddress" layoutX="217.0" layoutY="203.0" prefHeight="31.0" prefWidth="165.0" promptText="Address" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtSalary" layoutX="217.0" layoutY="279.0" prefHeight="31.0" prefWidth="165.0" promptText="Salary" style="-fx-background-color: #808e9b;">
+      <TextField fx:id="txtSalary" layoutX="217.0" layoutY="253.0" prefHeight="31.0" prefWidth="165.0" promptText="Salary" style="-fx-background-color: #808e9b;">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </TextField>
-      <TextField fx:id="lblDate" alignment="CENTER" layoutX="29.0" layoutY="77.0">
-         <font>
-            <Font name="System Bold Italic" size="12.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="lblTime" alignment="CENTER" layoutX="409.0" layoutY="77.0" />
    </children>
 </AnchorPane>

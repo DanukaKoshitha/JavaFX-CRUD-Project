@@ -11,6 +11,17 @@ import java.util.List;
 
 public class CustomerController implements CustomerServices{
 
+    public static CustomerController insance;
+
+    CustomerController(){
+
+    }
+
+    public static CustomerController getInstance()  {
+        return  insance == null ? insance = new CustomerController(): insance;
+
+    }
+
     @Override
     public boolean addCustomer(Customer customer) {
         try {
@@ -35,21 +46,21 @@ public class CustomerController implements CustomerServices{
         PreparedStatement pst = null;
         try {
             pst = connection.prepareStatement("SELECT * FROM CUSTOMER WHERE id=?");
-        pst.setString(1,id);
-        ResultSet resultSet = pst.executeQuery();
+            pst.setString(1,id);
+            ResultSet resultSet = pst.executeQuery();
 
-        Customer customer = null;
+            Customer customer = null;
 
-        if (resultSet.next()){
-            customer = new Customer(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    resultSet.getDouble(4)
-            );
-        }
+            if (resultSet.next()){
+                customer = new Customer(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getDouble(4)
+                );
+            }
 
-        return customer;
+            return customer;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -120,4 +131,6 @@ public class CustomerController implements CustomerServices{
             throw new RuntimeException(e);
         }
     }
-}
+    }
+
+

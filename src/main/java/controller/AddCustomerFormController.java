@@ -1,37 +1,22 @@
 package controller;
 
-
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.Customer;
 
 import java.io.IOException;
-import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
 
-public class AddCustomerFormController implements Initializable {
+public class AddCustomerFormController{
 
     public TextField txtID;
     public TextField txtName;
     public TextField txtAddress;
     public TextField txtSalary;
-    public TextField lblDate;
-    public TextField lblTime;
 
     CustomerServices services = new CustomerController();
 
@@ -47,25 +32,6 @@ public class AddCustomerFormController implements Initializable {
         else {
             new Alert(Alert.AlertType.ERROR,"Customer Not Found!").show();
         }
-    }
-
-    public void loadDateAndTime() {
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        lblDate.setText(currentDate.format(dateFormatter));
-
-
-        Timeline time = new Timeline(new KeyFrame(Duration.ZERO, e -> {
-            LocalTime cTime = LocalTime.now();
-            lblTime.setText(
-                    cTime.getHour() + ":" + cTime.getMinute() + ":" + cTime.getSecond()
-            );
-        }),
-                new KeyFrame(Duration.seconds(1))
-        );
-        time.setCycleCount(Animation.INDEFINITE);
-        time.play();
-
     }
 
     public void btnAddOnAction(ActionEvent actionEvent) throws SQLException {
@@ -114,10 +80,5 @@ public class AddCustomerFormController implements Initializable {
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/viewCustomerForm.fxml"))));
         stage.show();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadDateAndTime();
     }
 }

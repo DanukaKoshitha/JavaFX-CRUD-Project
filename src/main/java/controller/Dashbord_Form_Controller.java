@@ -49,4 +49,14 @@ public class Dashbord_Form_Controller implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+    public void btnOrderOnAction(ActionEvent actionEvent) throws IOException {
+        URL url = this.getClass().getResource("/view/orderForm.fxml");
+
+        assert  url != null;
+
+        Parent load = FXMLLoader.load(url);
+        this.loadForm.getChildren().clear();
+        this.loadForm.getChildren().add(load);
+    }
 }
