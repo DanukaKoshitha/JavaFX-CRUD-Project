@@ -1,4 +1,4 @@
-package controller;
+package controller.Item;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

@@ -1,4 +1,4 @@
-package controller;
+package controller.Customer;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

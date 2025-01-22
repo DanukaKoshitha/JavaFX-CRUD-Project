@@ -1,4 +1,4 @@
-package controller;
+package controller.Item;
 
 import model.Item;
 

@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.viewCustomerFormController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3d3d3d;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Customer.viewCustomerFormController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2c3a47" height="66.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label alignment="CENTER" layoutX="138.0" layoutY="7.0" prefHeight="51.0" prefWidth="362.0" text="View Customer Form" textFill="#d90c0c">

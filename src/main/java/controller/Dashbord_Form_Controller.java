@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,8 @@ public class Dashbord_Form_Controller implements Initializable {
     public JFXButton btnCustomer;
     public JFXButton btnItem;
     public AnchorPane loadForm;
-
+    public JFXButton btnLogout;
+    public JFXButton btnOrder;
     public void btnCustomerOnAction(ActionEvent actionEvent) throws IOException {
         loadCustomerForm();
     }
@@ -58,5 +60,10 @@ public class Dashbord_Form_Controller implements Initializable {
         Parent load = FXMLLoader.load(url);
         this.loadForm.getChildren().clear();
         this.loadForm.getChildren().add(load);
+    }
+
+    public void btnLogOutOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) btnLogout.getScene().getWindow();
+        stage.close();
     }
 }

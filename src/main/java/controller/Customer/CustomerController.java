@@ -1,4 +1,4 @@
-package controller;
+package controller.Customer;
 
 import DB.DBConnection;
 import javafx.collections.FXCollections;
@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerController implements CustomerServices{
+public class CustomerController implements CustomerServices {
 
     public static CustomerController insance;
 

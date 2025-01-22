@@ -22,9 +22,9 @@ public class RegisterFormController {
 
         if (!rst.next()){
             Connection con = DBConnection.getInstance().getConnection();
-            PreparedStatement pstm = con.prepareStatement("insert into users (username,email,passwmmord) values(?,?,?)");
+            PreparedStatement pstm = con.prepareStatement("insert into users (username,email,password) values(?,?,?)");
 
-            pstm.setString(1,txtEmail.getText());
+            pstm.setString(1,txtName.getText());
             pstm.setString(2,txtEmail.getText());
             pstm.setString(3,txtPassword.getText());
 

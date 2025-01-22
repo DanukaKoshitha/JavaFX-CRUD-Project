@@ -1,4 +1,4 @@
-package controller;
+package controller.Customer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

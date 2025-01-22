@@ -1,4 +1,4 @@
-package controller;
+package controller.Item;
 
 import DB.DBConnection;
 import Util.CrudUtill;
@@ -6,12 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Item;
+import model.OrderDeatails;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemController implements ItemServices{
+public class ItemController implements ItemServices {
 
     //////////////////////////////  Singleton  /////////////////////////////////////
 
@@ -109,6 +110,34 @@ public class ItemController implements ItemServices{
         });
 
         return itemObservableList;
+    }
+
+    public boolean updateStock(List<OrderDeatails> orderDetails){
+        for (OrderDeatails orderDeatailsObject : orderDetails){
+            boolean isUpdateStock = updateStock(orderDeatailsObject);
+
+            if (!isUpdateStock){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean updateStock(OrderDeatails orderDeatails){
+        try {
+            String SQL = "update item set qtyOnHand = qtyOnHand-? where code=?";
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement(SQL);
+
+            pst.setString(1, String.valueOf(orderDeatails.getQty()));
+            pst.setString(2,orderDeatails.getItemCode());
+
+            return pst.executeUpdate()>0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
