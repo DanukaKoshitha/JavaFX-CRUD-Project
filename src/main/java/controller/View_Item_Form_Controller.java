@@ -1,5 +1,8 @@
-package controller.Item;
+package controller;
 
+import Service.Custom.Impl.ItemServiceImpl;
+import Service.Custom.ItemServices;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,8 +46,13 @@ public class View_Item_Form_Controller implements Initializable {
     }
 
     public void loadTabel(){
-        ItemServices services=new ItemController();
-        ObservableList<Item> observableList= (ObservableList<Item>) services.loadTable();
-        tblView.setItems(observableList);
+        ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
+
+        ItemServices services=new ItemServiceImpl();
+        for (Item item : services.loadTable()) {
+            itemObservableList.add(item);
+        }
+
+        tblView.setItems(itemObservableList);
     }
 }

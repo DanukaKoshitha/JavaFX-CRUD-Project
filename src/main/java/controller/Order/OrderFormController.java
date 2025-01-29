@@ -1,8 +1,9 @@
 package controller.Order;
 
 import DB.DBConnection;
-import controller.Customer.CustomerController;
-import controller.Item.ItemController;
+import Service.Custom.Impl.CustomerServiceImpl;
+import Service.Custom.Impl.ItemServiceImpl;
+import Service.Custom.Impl.OrderServiceImpl;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -71,7 +72,7 @@ public class OrderFormController implements Initializable {
 
         ObservableList<String> customerObservableList = FXCollections.observableArrayList();
 
-        for(Customer customer : CustomerController.getInstance().loadTable()){
+        for(Customer customer : CustomerServiceImpl.getInstance().loadTable()){
             customerObservableList.add(customer.getId());
         }
 
@@ -82,7 +83,7 @@ public class OrderFormController implements Initializable {
     public void setItemCode(){
         ObservableList<String> itemObservableList= FXCollections.observableArrayList();
 
-        for(Item item : ItemController.getInstance().loadTable()){
+        for(Item item : ItemServiceImpl.getInstance().loadTable()){
             itemObservableList.add(item.getCode());
         }
 
@@ -118,34 +119,15 @@ public class OrderFormController implements Initializable {
         table.setItems(addtoCarts);
         calcNetTotal();
 
-//        ObservableList<Object> items = table.getItems();
-
-//        for (Object item : items){
-//            if (item instanceof YourItemClass) { // Replace YourItemClass with your actual class
-//                YourItemClass currentItem = (YourItemClass) item;
-//
-//                if (item.getClass().getResource("itemCode").equals(comboItemID.getValue().toString())) {
-//                    System.out.println("correct brooooooooo");
-//                }
-//            }
-//        }
-
         ///////////////  Dissable CusID Dropdown  //////////////////
 
         comboCusID.setDisable(true);
 
+        //////////////  Refresh qtyOnHand  //////////////
+
+        //ItemController.getInstance().updateStock();
+
     }
-//    public class YourItemClass {
-//        private String itemCode;
-//
-//        public YourItemClass(String itemCode) {
-//            this.itemCode = itemCode;
-//        }
-//
-//        public String getItemCode() {
-//            return itemCode;
-//        }
-//    }
 
     private void calcNetTotal(){
         Double netTotal=0.0;
@@ -209,7 +191,7 @@ public class OrderFormController implements Initializable {
     }
 
     public Item setItemValues(String id) throws SQLException {
-        Item item = ItemController.getInstance().searchItem(id);
+        Item item = ItemServiceImpl.getInstance().searchItem(id);
 
         txtDescription.setText(item.getDescription());
         txtUnitPrice.setText(String.valueOf(item.getUnitPrice()));
@@ -219,7 +201,7 @@ public class OrderFormController implements Initializable {
     }
 
     public void setValue(String id){
-        Customer customer = CustomerController.getInstance().searchCustomer(id);
+        Customer customer = CustomerServiceImpl.getInstance().searchCustomer(id);
 
         txtName.setText(customer.getName());
         txtAddress.setText(customer.getAddress());
@@ -248,7 +230,7 @@ public class OrderFormController implements Initializable {
         });
 
         try {
-            boolean isPlaceOrder = new OrderController().placeOrder(new Order(orderId, date, customerID, orderDeatails));
+            boolean isPlaceOrder = new OrderServiceImpl().placeOrder(new Order(orderId, date, customerID, orderDeatails));
             if (isPlaceOrder){
                 new Alert(Alert.AlertType.CONFIRMATION,"Place Order").show();
             }else {

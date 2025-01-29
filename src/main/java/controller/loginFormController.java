@@ -3,6 +3,7 @@ package controller;
 import DB.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -39,6 +40,10 @@ public class loginFormController {
     }
 
     public void lblRegister(MouseEvent mouseEvent) throws IOException {
+
+        Stage currentStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        currentStage.close();
+
         Stage stage = new Stage();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/register_form.fxml"))));
         stage.show();

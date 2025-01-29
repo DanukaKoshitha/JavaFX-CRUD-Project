@@ -1,5 +1,7 @@
 package controller.Item;
 
+import Service.Custom.Impl.ItemServiceImpl;
+import Service.Custom.ItemServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +28,7 @@ public class Add_Item_Form_Controller {
     @FXML
     private TextField txtUnitPrice;
 
-    ItemServices services = new ItemController();
+    ItemServices services = new ItemServiceImpl();
 
     @FXML
     void btnAddOnAction(ActionEvent event) {
@@ -104,7 +106,7 @@ public class Add_Item_Form_Controller {
     @FXML
     void btnViewOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/view_item_form.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/view_item_form.fxml"))));
         stage.show();
     }
 

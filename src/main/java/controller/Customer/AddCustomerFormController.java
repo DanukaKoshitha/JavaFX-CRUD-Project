@@ -1,5 +1,9 @@
 package controller.Customer;
 
+import Service.Custom.Impl.CustomerServiceImpl;
+import Service.Custom.CustomerServices;
+import Service.ServiceFactory;
+import Util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +22,9 @@ public class AddCustomerFormController{
     public TextField txtAddress;
     public TextField txtSalary;
 
-    CustomerServices services = new CustomerController();
+    //CustomerServices services = new CustomerServiceImpl();
+
+    CustomerServices services = ServiceFactory.getInstance().getServiceType(ServiceType.CUSTOMER);
 
     public void btnSearchOnAction(ActionEvent actionEvent){
         Customer customer = services.searchCustomer(txtID.getText());

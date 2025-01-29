@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.jasypt.util.text.BasicTextEncryptor;
 
-public class Starter extends Application {
+public class    Starter extends Application {
     public static void main(String[] args) {
 
         String key = "12345";

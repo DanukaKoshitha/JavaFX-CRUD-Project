@@ -1,11 +1,12 @@
-package controller.Item;
+package Service.Custom;
 
+import Service.SuperService;
 import model.Item;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public interface ItemServices {
+public interface ItemServices extends SuperService {
     boolean addItem(Item item) throws SQLException;
 
     Item searchItem(String id) throws SQLException;

@@ -1,6 +1,7 @@
-package controller.Customer;
+package Service.Custom.Impl;
 
 import DB.DBConnection;
+import Service.Custom.CustomerServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Customer;
@@ -9,16 +10,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerController implements CustomerServices {
+public class CustomerServiceImpl implements CustomerServices {
 
-    public static CustomerController insance;
+    public static CustomerServiceImpl insance;
 
-    CustomerController(){
+    public CustomerServiceImpl(){
 
     }
 
-    public static CustomerController getInstance()  {
-        return  insance == null ? insance = new CustomerController(): insance;
+    public static CustomerServiceImpl getInstance()  {
+        return  insance == null ? insance = new CustomerServiceImpl(): insance;
 
     }
 

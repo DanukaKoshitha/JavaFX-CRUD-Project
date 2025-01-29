@@ -1,7 +1,8 @@
-package controller.Item;
+package Service.Custom.Impl;
 
 import DB.DBConnection;
 import Util.CrudUtill;
+import Service.Custom.ItemServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -12,18 +13,18 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemController implements ItemServices {
+public class ItemServiceImpl implements ItemServices {
 
     //////////////////////////////  Singleton  /////////////////////////////////////
 
-    public static ItemController insance;
+    public static ItemServiceImpl insance;
 
-    ItemController(){
+    public ItemServiceImpl(){
 
     }
 
-    public static ItemController getInstance()  {
-        return  insance == null ? insance = new ItemController(): insance;
+    public static ItemServiceImpl getInstance()  {
+        return  insance == null ? insance = new ItemServiceImpl(): insance;
 
     }
 
@@ -85,9 +86,9 @@ public class ItemController implements ItemServices {
         ArrayList<Item> itemArrayList = new ArrayList<>();
 
         try {
-            Connection connection = DBConnection.getInstance().getConnection();
-            Statement pst = connection.createStatement();
-            ResultSet resultSet = pst.executeQuery("SELECT * FROM item");
+            String SQL = "SELECT * FROM item";
+
+            ResultSet resultSet = CrudUtill.execute(SQL);
 
             while (resultSet.next()){
                 itemArrayList.add(
@@ -102,14 +103,7 @@ public class ItemController implements ItemServices {
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR,e.getMessage()).show();
         }
-
-        ObservableList<Item> itemObservableList = FXCollections.observableArrayList();
-
-        itemArrayList.forEach(items -> {
-            itemObservableList.add(items);
-        });
-
-        return itemObservableList;
+        return itemArrayList;
     }
 
     public boolean updateStock(List<OrderDeatails> orderDetails){
@@ -127,13 +121,15 @@ public class ItemController implements ItemServices {
         try {
             String SQL = "update item set qtyOnHand = qtyOnHand-? where code=?";
 
-            Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement pst = connection.prepareStatement(SQL);
+//            Connection connection = DBConnection.getInstance().getConnection();
+//            PreparedStatement pst = connection.prepareStatement(SQL);
+//
+//            pst.setString(1, String.valueOf(orderDeatails.getQty()));
+//            pst.setString(2,orderDeatails.getItemCode());
+//
+//            return pst.executeUpdate()>0;
 
-            pst.setString(1, String.valueOf(orderDeatails.getQty()));
-            pst.setString(2,orderDeatails.getItemCode());
-
-            return pst.executeUpdate()>0;
+           return CrudUtill.execute(SQL,orderDeatails.getQty(),orderDeatails.getItemCode());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

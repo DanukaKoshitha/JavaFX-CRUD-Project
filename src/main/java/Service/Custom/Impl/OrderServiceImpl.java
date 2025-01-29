@@ -1,14 +1,14 @@
-package controller.Order;
+package Service.Custom.Impl;
 
 import DB.DBConnection;
-import controller.Item.ItemController;
+import controller.Order.OrderDetailController;
 import model.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class OrderController {
+public class OrderServiceImpl {
     public boolean placeOrder(Order order) throws SQLException {
         String SQL = "INSERT INTO ORDERS VALUES (?,?,?)";
 
@@ -31,7 +31,7 @@ public class OrderController {
             if (isAdded){
                 boolean isOrderDetailAdd = new OrderDetailController().addOrderDetails(order.getOrderDeatails());
                 if (isOrderDetailAdd){
-                    boolean isUpdateStock = new ItemController().updateStock(order.getOrderDeatails());
+                    boolean isUpdateStock = new ItemServiceImpl().updateStock(order.getOrderDeatails());
                     if (isUpdateStock){
                         return true;
                     }

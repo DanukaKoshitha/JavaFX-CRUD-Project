@@ -1,5 +1,7 @@
-package controller.Customer;
+package controller;
 
+import Service.Custom.Impl.CustomerServiceImpl;
+import Service.Custom.CustomerServices;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -29,7 +31,7 @@ public class viewCustomerFormController implements Initializable {
     }
 
     public void loadTable(){
-        CustomerServices services = new CustomerController();
+        CustomerServices services = new CustomerServiceImpl();
         ObservableList<Customer> customerObservableList = (ObservableList<Customer>) services.loadTable();
         table.setItems(customerObservableList);
     }
