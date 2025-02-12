@@ -1,7 +1,7 @@
 package Service.Custom;
 
 import Service.SuperService;
-import model.Item;
+import DTO.Item;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,8 @@
 package Repository.Custom;
 
-public interface ItemDao {
+import Entity.ItemEntity;
+import Repository.CrudDao;
+
+public interface ItemDao extends CrudDao<ItemEntity,String> {
+
 }

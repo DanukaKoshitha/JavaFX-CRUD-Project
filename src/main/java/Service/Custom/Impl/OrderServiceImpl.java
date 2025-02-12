@@ -2,7 +2,7 @@ package Service.Custom.Impl;
 
 import DB.DBConnection;
 import controller.Order.OrderDetailController;
-import model.Order;
+import DTO.Order;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

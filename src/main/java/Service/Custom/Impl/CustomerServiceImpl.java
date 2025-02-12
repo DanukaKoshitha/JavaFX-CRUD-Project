@@ -1,10 +1,16 @@
 package Service.Custom.Impl;
 
 import DB.DBConnection;
+import Entity.CustomerEntity;
+import Repository.Custom.CustomerDao;
+import Repository.DaoFactory;
+import Repository.SuperDao;
 import Service.Custom.CustomerServices;
+import Util.DaoType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.Customer;
+import DTO.Customer;
+import org.modelmapper.ModelMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,27 +24,24 @@ public class CustomerServiceImpl implements CustomerServices {
 
     }
 
-    public static CustomerServiceImpl getInstance()  {
-        return  insance == null ? insance = new CustomerServiceImpl(): insance;
-
+    public static CustomerServiceImpl getInstance() {
+        return insance == null ? insance = new CustomerServiceImpl() : insance;
     }
 
     @Override
     public boolean addCustomer(Customer customer) {
+
+        CustomerEntity entity = new ModelMapper().map(customer, CustomerEntity.class);
+
+        CustomerDao customerDao = DaoFactory.getInstance().getDaoType(DaoType.CUSTOMER);
+
         try {
-        Connection connection = DBConnection.getInstance().getConnection();
-        PreparedStatement pst = connection.prepareStatement("insert into customer values(?,?,?,?)");
-
-            pst.setString(1,customer.getId());
-            pst.setString(2,customer.getName());
-            pst.setString(3,customer.getAddress());
-            pst.setDouble(4, customer.getSalary());
-
-        return pst.executeUpdate()>0;
-
+            customerDao.save(entity);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        return false;
     }
 
     @Override

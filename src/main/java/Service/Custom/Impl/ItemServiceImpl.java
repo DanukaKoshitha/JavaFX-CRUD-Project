@@ -1,13 +1,15 @@
 package Service.Custom.Impl;
 
-import DB.DBConnection;
+import Entity.ItemEntity;
+import Repository.Custom.ItemDao;
+import Repository.DaoFactory;
 import Util.CrudUtill;
 import Service.Custom.ItemServices;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import Util.DaoType;
 import javafx.scene.control.Alert;
-import model.Item;
-import model.OrderDeatails;
+import DTO.Item;
+import DTO.OrderDeatails;
+import org.modelmapper.ModelMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,13 +34,12 @@ public class ItemServiceImpl implements ItemServices {
 
     @Override
     public boolean addItem(Item item) throws SQLException {
-       return CrudUtill.execute(
-                "INSERT INTO item VALUES (?,?,?,?)",
-                item.getCode(),
-                item.getDescription(),
-                item.getUnitPrice(),
-                item.getQty()
-        );
+        ItemDao itemDao = DaoFactory.getInstance().getDaoType(DaoType.ITEM);
+
+        ItemEntity entity = new ModelMapper().map(item, ItemEntity.class);
+
+        itemDao.save(entity);
+        return false;
     }
 
     @Override

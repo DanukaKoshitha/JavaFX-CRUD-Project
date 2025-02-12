@@ -1,4 +1,4 @@
-package model;
+package DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,10 +10,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 
-public class AddtoCart {
+public class OrderDeatails {
+    private String orderID;
     private String itemCode;
-    private String description;
+    private int qty;
     private Double unitPrice;
-    private  int qty;
-    private Double total;
 }

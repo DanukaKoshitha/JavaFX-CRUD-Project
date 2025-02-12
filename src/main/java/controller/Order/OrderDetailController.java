@@ -1,7 +1,7 @@
 package controller.Order;
 
 import DB.DBConnection;
-import model.OrderDeatails;
+import DTO.OrderDeatails;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

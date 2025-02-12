@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Item;
+import DTO.Item;
 
 import java.io.IOException;
 import java.sql.SQLException;

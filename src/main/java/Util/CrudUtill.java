@@ -17,7 +17,6 @@ public class CrudUtill {
         if (SQL.startsWith("select") || SQL.startsWith("SELECT")){
             return  (T) pst.executeQuery();
         }else {
-
             return (T) (Boolean) (pst.executeUpdate()>0);
         }
     }

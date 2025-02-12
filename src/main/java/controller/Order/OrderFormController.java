@@ -14,7 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
-import model.*;
+import DTO.*;
 
 import java.net.URL;
 import java.sql.Connection;
